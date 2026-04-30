@@ -12,7 +12,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router base="/mitovest">
+          <Router base="">
             <Switch>
               <Route path="/" component={Home} />
               <Route component={NotFound} />
