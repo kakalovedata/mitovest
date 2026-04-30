@@ -67,7 +67,7 @@ export default function ContactSection() {
             {/* 微信 */}
             <div
               className="data-card-dark p-6 cursor-pointer"
-              onClick={() => handleCopy("mitovest", "wechat")}
+              onClick={() => handleCopy("ChengLin_2025", "wechat")}
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-9 h-9 flex items-center justify-center rounded-sm"
@@ -93,7 +93,7 @@ export default function ContactSection() {
             {/* 邮箱 */}
             <div
               className="data-card-dark p-6 cursor-pointer"
-              onClick={() => handleCopy("contact@mitovest.com", "email")}
+              onClick={() => handleCopy("cell2015@126.com", "email")}
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-9 h-9 flex items-center justify-center rounded-sm"
@@ -117,56 +117,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* 微信二维码区块 */}
-          <div className={`mb-8 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-            style={{ transitionDelay: "250ms" }}>
-            <div className="data-card-dark p-6">
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                {/* 二维码图片 */}
-                <div className="shrink-0 flex flex-col items-center">
-                  <img
-                    src="/wechat-qr.jpg"
-                    alt="陈平安微信二维码"
-                    style={{
-                      width: "140px",
-                      height: "140px",
-                      objectFit: "cover",
-                      borderRadius: "0.5rem",
-                      border: "2px solid oklch(0.72 0.14 85 / 0.3)",
-                    }}
-                  />
-                  <div className="mt-2 text-xs font-mono-data" style={{ color: "oklch(0.50 0.01 255)" }}>
-                    扫码添加微信
-                  </div>
-                </div>
-                {/* 介绍文字 */}
-                <div className="flex-1 text-center sm:text-left">
-                  <div className="section-tag mb-2" style={{ color: "oklch(0.60 0.10 85)" }}>Direct Contact</div>
-                  <div className="text-lg font-500 mb-1" style={{
-                    color: "oklch(0.95 0.005 255)",
-                    fontFamily: "'Noto Sans SC', sans-serif",
-                    fontWeight: 600,
-                  }}>
-                    陈平安
-                  </div>
-                  <div className="text-sm mb-3" style={{
-                    color: "oklch(0.60 0.01 255)",
-                    fontFamily: "'Noto Sans SC', sans-serif",
-                    fontWeight: 300,
-                  }}>
-                    百慕大
-                  </div>
-                  <p className="text-sm leading-relaxed" style={{
-                    color: "oklch(0.55 0.01 255)",
-                    fontFamily: "'Noto Sans SC', sans-serif",
-                    fontWeight: 300,
-                  }}>
-                    扫描二维码添加微信，可直接沟通合作意向、获取完整回测报告及系统演示安排。
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* 主 CTA */}
           <div className={`text-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
