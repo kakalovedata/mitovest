@@ -9,7 +9,7 @@ import { useCountUp } from "../hooks/useCountUp";
 const trustStats = [
   { value: 5000, unit: "+", label: "A股覆盖标的", en: "A-Share Universe", decimals: 0 },
   { value: 55, unit: "+", label: "Alpha 因子", en: "Alpha Factors", decimals: 0 },
-  { value: 146, unit: "月", label: "回测周期", en: "Backtest Period", decimals: 0 },
+  { value: 143, unit: "月", label: "回测周期", en: "Backtest Period", decimals: 0 },
   { value: 12, unit: "层", label: "因子体系", en: "Factor Layers", decimals: 0 },
 ];
 

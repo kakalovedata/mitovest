@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import { useCountUp } from "../hooks/useCountUp";
 
 const stats = [
-  { label: "回测周期", value: 146, unit: "个月", decimals: 0 },
-  { label: "年化收益", value: 25.78, unit: "%", decimals: 2 },
-  { label: "夏普比率", value: 1.34, unit: "", decimals: 2 },
-  { label: "最大回撤", value: 20.69, unit: "%", decimals: 2 },
-  { label: "累计收益", value: 1702, unit: "%", decimals: 0, },
+  { label: "回测周期", value: 143, unit: "个月", decimals: 0 },
+  { label: "年化收益", value: 33.20, unit: "%", decimals: 2 },
+  { label: "夏普比率", value: 1.43, unit: "", decimals: 2 },
+  { label: "最大回撤", value: 17.20, unit: "%", decimals: 2 },
+  { label: "累计收益", value: 2171, unit: "%", decimals: 0, }, // 22.71x -> 2171% 累计收益
 ];
 
 function StatCard({ label, value, unit, decimals, delay }: {
@@ -158,7 +158,7 @@ export default function HeroSection() {
             {/* 底部提示 */}
             <p className={`mt-6 text-xs transition-all duration-700 delay-500 ${loaded ? "opacity-100" : "opacity-0"}`}
               style={{ color: "oklch(0.70 0.01 255)", fontFamily: "'IBM Plex Mono', monospace" }}>
-              回测区间 2012.01 — 2024.02 · 历史表现不代表未来收益
+              回测区间 2014.01 — 2026.01 · 历史表现不代表未来收益
             </p>
           </div>
 
@@ -192,7 +192,7 @@ export default function HeroSection() {
                       </div>
                     </div>
                     <div className="flex gap-2 flex-wrap">
-                      {["L1 趋势", "L3 DK", "L9 妖股", "L12 截面"].map(tag => (
+                      {["L1 趋势", "L3 DK", "L9 弹性", "L12 截面"].map(tag => (
                         <span key={tag} className="px-2 py-0.5 text-xs font-mono-data rounded-sm"
                           style={{
                             background: "oklch(0.18 0.06 255 / 0.06)",

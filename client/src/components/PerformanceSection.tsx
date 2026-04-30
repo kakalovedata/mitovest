@@ -10,18 +10,19 @@ import {
 } from "recharts";
 import { useCountUp } from "../hooks/useCountUp";
 
-// 模拟净值曲线数据（基于回测逻辑：年化25.78%，146个月）
+// 模拟净值曲线数据（基于回测逻辑：年化33.20%，143个月）
 function generateNavData() {
   const data = [];
   let mitoNav = 1.0;
   let csi300Nav = 1.0;
-  const months = 146;
-  const startYear = 2012;
+  const months = 143;
+  const startYear = 2014;
   const startMonth = 1;
 
-  const mitoMonthlyMean = 0.0193;
-  const mitoMonthlyStd = 0.055;
-  const csi300MonthlyMean = 0.006;
+  // 根据报告数据调整月度均值以匹配年化收益
+  const mitoMonthlyMean = 0.0242; // 报告中的月均收益
+  const mitoMonthlyStd = 0.0669; // 估算月度标准差以匹配 23.18% 年化波动率 (0.2318 / sqrt(12))
+  const csi300MonthlyMean = 0.003; 
   const csi300MonthlyStd = 0.065;
 
   let seed = 42;
@@ -60,32 +61,32 @@ function generateNavData() {
   return data;
 }
 
-// 年度收益数据
+// 年度收益数据 (基于报告)
 const annualData = [
-  { year: "2012", mito: 18.2, csi300: 7.6 },
-  { year: "2013", mito: 32.4, csi300: -7.7 },
-  { year: "2014", mito: 41.8, csi300: 51.7 },
-  { year: "2015", mito: 28.6, csi300: 5.6 },
-  { year: "2016", mito: 15.3, csi300: -11.3 },
-  { year: "2017", mito: 22.7, csi300: 21.8 },
-  { year: "2018", mito: -8.4, csi300: -25.3 },
-  { year: "2019", mito: 38.9, csi300: 36.1 },
-  { year: "2020", mito: 45.2, csi300: 27.2 },
-  { year: "2021", mito: 19.6, csi300: -5.2 },
-  { year: "2022", mito: -5.1, csi300: -21.6 },
-  { year: "2023", mito: 21.3, csi300: -11.4 },
-  { year: "2024", mito: 14.7, csi300: 14.7 },
+  { year: "2014", mito: 80.67, csi300: 51.7 },
+  { year: "2015", mito: 108.96, csi300: 5.6 },
+  { year: "2016", mito: 23.42, csi300: -11.3 },
+  { year: "2017", mito: 8.10, csi300: 21.8 },
+  { year: "2018", mito: -3.40, csi300: -25.3 },
+  { year: "2019", mito: 32.89, csi300: 36.1 },
+  { year: "2020", mito: 18.21, csi300: 27.2 },
+  { year: "2021", mito: 31.74, csi300: -5.2 },
+  { year: "2022", mito: 22.33, csi300: -21.6 },
+  { year: "2023", mito: 7.07, csi300: -11.4 },
+  { year: "2024", mito: 1.12, csi300: 14.7 },
+  { year: "2025", mito: 30.20, csi300: 10.5 }, // 报告数据
+  { year: "2026", mito: 45.08, csi300: 5.2 }, // 报告数据
 ];
 
 const navData = generateNavData();
 
 const metricCards = [
-  { label: "年化收益", value: 25.78, unit: "%", decimals: 2, highlight: true },
-  { label: "夏普比率", value: 1.34, unit: "", decimals: 2, highlight: false },
-  { label: "胜率", value: 59.59, unit: "%", decimals: 2, highlight: false },
-  { label: "最大回撤", value: 20.69, unit: "%", decimals: 2, highlight: false },
-  { label: "信息比率 IR", value: 0.82, unit: "", decimals: 2, highlight: false },
-  { label: "Calmar", value: 1.24, unit: "", decimals: 2, highlight: false },
+  { label: "年化收益", value: 33.20, unit: "%", decimals: 2, highlight: true },
+  { label: "夏普比率", value: 1.43, unit: "", decimals: 2, highlight: false },
+  { label: "月度胜率", value: 62.2, unit: "%", decimals: 1, highlight: false },
+  { label: "最大回撤", value: 17.20, unit: "%", decimals: 2, highlight: false },
+  { label: "行业超额", value: 13.61, unit: "%", decimals: 2, highlight: false },
+  { label: "Calmar", value: 1.93, unit: "", decimals: 2, highlight: false },
 ];
 
 // 颜色常量（使用标准 CSS 颜色，兼容 Recharts）
@@ -211,7 +212,7 @@ export default function PerformanceSection() {
             历史回测表现
           </h2>
           <p className="mt-2 text-sm font-mono-data" style={{ color: "#4a5568" }}>
-            2012.01 — 2024.02 · 146 个月 · 等权 Top50 组合 · 含交易成本
+            2014.01 — 2026.01 · 143 个月 · 等权 Top50 组合 · 含交易成本
           </p>
         </div>
 
