@@ -6,25 +6,25 @@
 import { useEffect, useRef, useState } from "react";
 
 const factorLayers = [
-  { id: "L1", name: "趋势龙头", en: "Trend Leader", count: 7, color: "oklch(0.45 0.18 255)" },
-  { id: "L2", name: "量价资金", en: "Volume Flow", count: 6, color: "oklch(0.50 0.16 220)" },
-  { id: "L3", name: "DKPower", en: "DK Power", count: 3, color: "oklch(0.45 0.20 280)" },
-  { id: "L4", name: "技术形态", en: "Technical", count: 4, color: "oklch(0.55 0.18 200)" },
-  { id: "L5", name: "风险估值", en: "Risk Value", count: 6, color: "oklch(0.50 0.15 240)" },
-  { id: "L6", name: "行业交叉", en: "Industry Cross", count: 3, color: "oklch(0.45 0.18 260)" },
-  { id: "L7", name: "龙头突破", en: "Breakout", count: 1, color: "oklch(0.55 0.20 210)" },
-  { id: "L8", name: "高阶演进", en: "Advanced", count: 10, color: "oklch(0.48 0.16 270)" },
-  { id: "L9", name: "妖股捕捉", en: "Monster", count: 4, color: "oklch(0.52 0.18 250)" },
-  { id: "L10", name: "强势共振", en: "Resonance", count: 4, color: "oklch(0.46 0.17 255)" },
-  { id: "L11", name: "价格结构", en: "Price Structure", count: 5, color: "oklch(0.50 0.15 245)" },
-  { id: "L12", name: "截面结构", en: "Cross Section", count: 2, color: "oklch(0.44 0.18 265)" },
+  { id: "L1", name: "趋势动量", en: "Trend Momentum", color: "oklch(0.45 0.18 255)" },
+  { id: "L2", name: "量价资金", en: "Volume Flow", color: "oklch(0.50 0.16 220)" },
+  { id: "L3", name: "能量结构", en: "Energy Structure", color: "oklch(0.45 0.20 280)" },
+  { id: "L4", name: "技术形态", en: "Technical Pattern", color: "oklch(0.55 0.18 200)" },
+  { id: "L5", name: "风险估值", en: "Risk & Value", color: "oklch(0.50 0.15 240)" },
+  { id: "L6", name: "行业轮动", en: "Sector Rotation", color: "oklch(0.45 0.18 260)" },
+  { id: "L7", name: "突破信号", en: "Breakout Signal", color: "oklch(0.55 0.20 210)" },
+  { id: "L8", name: "高阶演进", en: "Advanced Alpha", color: "oklch(0.48 0.16 270)" },
+  { id: "L9", name: "弹性捕捉", en: "Elasticity", color: "oklch(0.52 0.18 250)" },
+  { id: "L10", name: "强势共振", en: "Resonance", color: "oklch(0.46 0.17 255)" },
+  { id: "L11", name: "价格结构", en: "Price Structure", color: "oklch(0.50 0.15 245)" },
+  { id: "L12", name: "截面结构", en: "Cross Section", color: "oklch(0.44 0.18 265)" },
 ];
 
 const coreModules = [
   {
     tag: "Alpha Engine",
     title: "Alpha 引擎",
-    desc: "12层、55+因子的多维度 Alpha 挖掘体系。从趋势龙头到截面结构，系统性捕捉 A 股市场的结构性超额收益机会。",
+    desc: "多维度、多层次的 Alpha 挖掘体系。从趋势动量到截面结构，系统性捕捉 A 股市场的结构性超额收益机会，通过动态权重机制持续适应市场风格切换。",
     detail: "IC 衰减门控 · 行业中性化 · 动态因子权重",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -37,8 +37,8 @@ const coreModules = [
   {
     tag: "Risk Shield",
     title: "风险护盾",
-    desc: "自适应 ATR 止损 + 结构性止损 + 时间止损三重机制。根据市场状态（bear_risk_flag）动态调整止损乘数，熊市收紧至 2.5x，牛市放宽至 5.0x。",
-    detail: "ATR 自适应 · 行业拥挤度惩罚 · 市场广度监控",
+    desc: "自适应止损 + 结构性止损 + 时间止损三重机制。根据市场状态动态调整风控参数，在不同市场环境下实现攻守平衡，有效控制回撤。",
+    detail: "自适应止损 · 行业拥挤度惩罚 · 市场广度监控",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M12 3 L20 7 V13 C20 17.4 16.4 21.4 12 22 C7.6 21.4 4 17.4 4 13 V7 L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
@@ -49,8 +49,8 @@ const coreModules = [
   {
     tag: "Fusion Model",
     title: "双层融合",
-    desc: "行业选择层（LightGBM）× 个股 Alpha 层双层融合评分。行业胜率作为个股分数的放大系数（IND_FUSION_ALPHA=0.4），而非简单叠加。",
-    detail: "LightGBM · 季节性加权 · 滚动训练",
+    desc: "行业选择层与个股 Alpha 层双层融合评分。行业胜率作为个股分数的放大系数，而非简单叠加，实现行业与个股两个维度的协同增强。",
+    detail: "梯度提升模型 · 季节性加权 · 滚动训练",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <circle cx="8" cy="8" r="3" stroke="currentColor" strokeWidth="2"/>
@@ -63,8 +63,8 @@ const coreModules = [
   {
     tag: "Execution Logic",
     title: "执行逻辑",
-    desc: "专为中小资金实盘设计。等权 Top50 组合，单行业持仓上限 5 只，流动性过滤（日均成交 ≥500万），月均换手率 46%，交易成本已纳入回测。",
-    detail: "Top50 等权 · 行业分散 · 流动性过滤",
+    desc: "专为中小资金实盘设计。等权分散组合，严格控制单行业集中度，设有流动性过滤门槛，适中换手率，交易成本已纳入回测验证。",
+    detail: "等权分散 · 行业分散 · 流动性过滤",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2"/>
@@ -163,11 +163,7 @@ export default function SystemSection() {
                       {layer.en}
                     </span>
                   </div>
-                  {/* 因子数 */}
-                  <div className="font-mono-data text-xs shrink-0"
-                    style={{ color: "oklch(0.65 0.01 255)" }}>
-                    ×{layer.count}
-                  </div>
+
                 </div>
               ))}
             </div>

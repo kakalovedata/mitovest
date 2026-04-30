@@ -3,7 +3,7 @@
  * 风格：冷白精密（Precision White）
  * 设计哲学：瑞士国际主义 + 金融数据新闻风
  * 配色：白底深蓝字 + 琥珀金强调 + 深色反转 Section
- * 字体：Noto Serif SC（标题）+ Noto Sans SC（正文）+ IBM Plex Mono（数据）
+ * 字体：Noto Serif SC（中文标题）+ DM Serif Display（英文大标题）+ Noto Sans SC（中文正文）+ Inter（英文正文）+ JetBrains Mono（数据/代码）
  */
 
 @import "tailwindcss";
@@ -103,9 +103,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-family: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
     font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
@@ -152,14 +154,21 @@
     }
   }
 
-  /* 等宽数字字体 */
+  /* 等宽数字字体：升级为 JetBrains Mono，更清晰的数字字符区分 */
   .font-mono-data {
-    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', monospace;
+    font-feature-settings: 'zero' 1, 'ss01' 1;
   }
 
-  /* 英文标题字体 */
+  /* 英文标题字体：使用 Inter，更现代简洁 */
   .font-grotesk {
-    font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  }
+
+  /* 英文大标题装饰性字体 */
+  .font-display {
+    font-family: 'DM Serif Display', 'Noto Serif SC', serif;
+    font-style: italic;
   }
 
   /* 深色反转区块 */
@@ -181,15 +190,16 @@
   /* 数据卡片 */
   .data-card {
     background: oklch(1.0 0 0);
-    border: 1px solid oklch(0.90 0.005 255);
-    border-radius: 0.4rem;
-    transition: all 0.25s ease;
+    border: 1px solid oklch(0.91 0.004 255);
+    border-radius: 0.5rem;
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 4px oklch(0.18 0.06 255 / 0.04);
   }
 
   .data-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 32px oklch(0.18 0.06 255 / 0.10);
-    border-color: oklch(0.72 0.14 85 / 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px oklch(0.18 0.06 255 / 0.12);
+    border-color: oklch(0.72 0.14 85 / 0.45);
   }
 
   /* 深色区块数据卡片 */
@@ -205,42 +215,45 @@
     background: oklch(0.22 0.06 255 / 0.6);
   }
 
-  /* 主按钮 */
+  /* 主按鈕 */
   .btn-primary {
     background-color: oklch(0.18 0.06 255);
     color: oklch(1.0 0 0);
-    padding: 0.75rem 2rem;
-    font-family: 'Noto Sans SC', sans-serif;
+    padding: 0.8rem 2.2rem;
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
     font-weight: 500;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    border-radius: 0.3rem;
-    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    border-radius: 0.4rem;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid transparent;
   }
 
   .btn-primary:hover {
-    background-color: oklch(0.24 0.07 255);
-    box-shadow: 0 4px 16px oklch(0.18 0.06 255 / 0.3);
+    background-color: oklch(0.22 0.07 255);
+    box-shadow: 0 6px 20px oklch(0.18 0.06 255 / 0.28);
+    transform: translateY(-1px);
   }
 
-  /* 金色轮廓按钮 */
+  /* 金色轮廓按鈕 */
   .btn-outline-gold {
     background-color: transparent;
     color: oklch(0.72 0.14 85);
-    padding: 0.75rem 2rem;
-    font-family: 'Noto Sans SC', sans-serif;
+    padding: 0.8rem 2.2rem;
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
     font-weight: 500;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    border-radius: 0.3rem;
-    border: 1px solid oklch(0.72 0.14 85);
-    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    border-radius: 0.4rem;
+    border: 1.5px solid oklch(0.72 0.14 85 / 0.8);
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .btn-outline-gold:hover {
-    background-color: oklch(0.72 0.14 85 / 0.1);
-    box-shadow: 0 4px 16px oklch(0.72 0.14 85 / 0.2);
+    background-color: oklch(0.72 0.14 85 / 0.08);
+    border-color: oklch(0.72 0.14 85);
+    box-shadow: 0 4px 16px oklch(0.72 0.14 85 / 0.18);
+    transform: translateY(-1px);
   }
 
   /* 导航栏 */
@@ -259,7 +272,7 @@
 
   /* 章节标签 */
   .section-tag {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -269,7 +282,7 @@
 
   /* 大数字显示 */
   .stat-number {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
     font-weight: 600;
     line-height: 1;
   }
@@ -289,16 +302,34 @@
   /* 网格背景 */
   .grid-bg {
     background-image:
-      linear-gradient(oklch(0.18 0.06 255 / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.18 0.06 255 / 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
+      linear-gradient(oklch(0.18 0.06 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.18 0.06 255 / 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 
   /* 深色区块网格背景 */
   .grid-bg-dark {
     background-image:
-      linear-gradient(oklch(0.45 0.18 255 / 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.45 0.18 255 / 0.08) 1px, transparent 1px);
-    background-size: 48px 48px;
+      linear-gradient(oklch(0.45 0.18 255 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.45 0.18 255 / 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* 光晕渐变背景（用于分隔区块） */
+  .section-alt {
+    background: oklch(0.985 0.001 255);
+  }
+
+  /* 内容区块间距标准化 */
+  .section-spacing {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
   }
 }
