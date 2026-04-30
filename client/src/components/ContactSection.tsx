@@ -83,7 +83,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <div className="font-mono-data text-lg" style={{ color: "oklch(0.95 0.005 255)" }}>
-                mitovest
+                ChengLin_2025
               </div>
               <div className="mt-2 text-xs font-mono-data" style={{ color: "oklch(0.50 0.01 255)" }}>
                 {copied === "wechat" ? "✓ 已复制" : "点击复制"}
@@ -109,7 +109,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <div className="font-mono-data text-base" style={{ color: "oklch(0.95 0.005 255)" }}>
-                contact@mitovest.com
+                cell2015@126.com
               </div>
               <div className="mt-2 text-xs font-mono-data" style={{ color: "oklch(0.50 0.01 255)" }}>
                 {copied === "email" ? "✓ 已复制" : "点击复制"}
