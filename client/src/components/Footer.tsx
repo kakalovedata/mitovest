@@ -117,7 +117,7 @@ export default function Footer() {
 
           {/* 版权 */}
           <div className="font-mono-data text-xs text-center" style={{ color: "oklch(0.35 0.01 255)" }}>
-            © 2026 Mito 妙投 · mitovest.com · 本平台不提供证券投资咨询服务
+            © 2026 Mito 妙投 · mitovest.com 
           </div>
 
           {/* 免责 */}
