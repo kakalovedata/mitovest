@@ -10,151 +10,153 @@ import {
 } from "recharts";
 import { useCountUp } from "../hooks/useCountUp";
 
-// 累计净值走势数据（真实回测数据，143个月，2014-05 至 2026-03）
+// 累计净值走势数据
+// mito：真实回测数据（2014-05 至 2026-03，143个月）
+// sse：上证指数累计净值（基准：2014-04末=1.0，数据来源：Wind）
 const navData = [
-  { date: "2014-05", mito: 1.014 },
-  { date: "2014-06", mito: 1.095 },
-  { date: "2014-07", mito: 1.181 },
-  { date: "2014-08", mito: 1.340 },
-  { date: "2014-09", mito: 1.515 },
-  { date: "2014-10", mito: 1.567 },
-  { date: "2014-11", mito: 1.623 },
-  { date: "2014-12", mito: 1.672 },
-  { date: "2015-01", mito: 1.848 },
-  { date: "2015-02", mito: 2.070 },
-  { date: "2015-03", mito: 2.644 },
-  { date: "2015-04", mito: 2.844 },
-  { date: "2015-05", mito: 3.506 },
-  { date: "2015-06", mito: 3.268 },
-  { date: "2015-07", mito: 3.086 },
-  { date: "2015-08", mito: 3.315 },
-  { date: "2015-09", mito: 3.323 },
-  { date: "2015-10", mito: 3.985 },
-  { date: "2015-11", mito: 4.540 },
-  { date: "2015-12", mito: 4.480 },
-  { date: "2016-01", mito: 4.193 },
-  { date: "2016-02", mito: 4.139 },
-  { date: "2016-03", mito: 4.920 },
-  { date: "2016-04", mito: 5.190 },
-  { date: "2016-05", mito: 4.805 },
-  { date: "2016-06", mito: 4.623 },
-  { date: "2016-07", mito: 4.667 },
-  { date: "2016-08", mito: 4.949 },
-  { date: "2016-09", mito: 5.169 },
-  { date: "2016-10", mito: 5.428 },
-  { date: "2016-11", mito: 5.485 },
-  { date: "2016-12", mito: 5.511 },
-  { date: "2017-01", mito: 5.306 },
-  { date: "2017-02", mito: 5.689 },
-  { date: "2017-03", mito: 5.531 },
-  { date: "2017-04", mito: 5.240 },
-  { date: "2017-05", mito: 5.039 },
-  { date: "2017-06", mito: 5.428 },
-  { date: "2017-07", mito: 5.372 },
-  { date: "2017-08", mito: 5.489 },
-  { date: "2017-09", mito: 5.484 },
-  { date: "2017-10", mito: 5.485 },
-  { date: "2017-11", mito: 5.472 },
-  { date: "2017-12", mito: 5.905 },
-  { date: "2018-01", mito: 5.652 },
-  { date: "2018-02", mito: 5.482 },
-  { date: "2018-03", mito: 5.787 },
-  { date: "2018-04", mito: 5.797 },
-  { date: "2018-05", mito: 5.656 },
-  { date: "2018-06", mito: 5.416 },
-  { date: "2018-07", mito: 5.512 },
-  { date: "2018-08", mito: 5.569 },
-  { date: "2018-09", mito: 5.682 },
-  { date: "2018-10", mito: 5.452 },
-  { date: "2018-11", mito: 5.903 },
-  { date: "2018-12", mito: 5.654 },
-  { date: "2019-01", mito: 5.670 },
-  { date: "2019-02", mito: 6.564 },
-  { date: "2019-03", mito: 7.410 },
-  { date: "2019-04", mito: 6.858 },
-  { date: "2019-05", mito: 6.959 },
-  { date: "2019-06", mito: 7.562 },
-  { date: "2019-07", mito: 7.222 },
-  { date: "2019-08", mito: 7.356 },
-  { date: "2019-09", mito: 7.318 },
-  { date: "2019-10", mito: 7.458 },
-  { date: "2019-11", mito: 7.289 },
-  { date: "2019-12", mito: 7.637 },
-  { date: "2020-01", mito: 6.908 },
-  { date: "2020-02", mito: 7.456 },
-  { date: "2020-03", mito: 7.052 },
-  { date: "2020-04", mito: 7.050 },
-  { date: "2020-05", mito: 7.470 },
-  { date: "2020-06", mito: 8.208 },
-  { date: "2020-07", mito: 9.016 },
-  { date: "2020-08", mito: 8.950 },
-  { date: "2020-09", mito: 8.565 },
-  { date: "2020-10", mito: 8.709 },
-  { date: "2020-11", mito: 8.805 },
-  { date: "2020-12", mito: 8.967 },
-  { date: "2021-01", mito: 9.099 },
-  { date: "2021-02", mito: 9.858 },
-  { date: "2021-03", mito: 9.464 },
-  { date: "2021-04", mito: 9.516 },
-  { date: "2021-05", mito: 9.558 },
-  { date: "2021-06", mito: 9.642 },
-  { date: "2021-07", mito: 10.030 },
-  { date: "2021-08", mito: 11.006 },
-  { date: "2021-09", mito: 10.838 },
-  { date: "2021-10", mito: 10.814 },
-  { date: "2021-11", mito: 11.898 },
-  { date: "2021-12", mito: 12.138 },
-  { date: "2022-01", mito: 11.821 },
-  { date: "2022-02", mito: 11.648 },
-  { date: "2022-03", mito: 11.413 },
-  { date: "2022-04", mito: 10.785 },
-  { date: "2022-05", mito: 12.388 },
-  { date: "2022-06", mito: 12.935 },
-  { date: "2022-07", mito: 13.500 },
-  { date: "2022-08", mito: 13.542 },
-  { date: "2022-09", mito: 12.769 },
-  { date: "2022-10", mito: 14.278 },
-  { date: "2022-11", mito: 15.109 },
-  { date: "2022-12", mito: 14.813 },
-  { date: "2023-01", mito: 14.993 },
-  { date: "2023-02", mito: 15.807 },
-  { date: "2023-03", mito: 15.479 },
-  { date: "2023-04", mito: 16.337 },
-  { date: "2023-05", mito: 16.177 },
-  { date: "2023-06", mito: 16.402 },
-  { date: "2023-07", mito: 16.056 },
-  { date: "2023-08", mito: 15.509 },
-  { date: "2023-09", mito: 15.244 },
-  { date: "2023-10", mito: 15.051 },
-  { date: "2023-11", mito: 15.719 },
-  { date: "2023-12", mito: 15.813 },
-  { date: "2024-01", mito: 13.797 },
-  { date: "2024-02", mito: 13.932 },
-  { date: "2024-03", mito: 16.151 },
-  { date: "2024-04", mito: 16.289 },
-  { date: "2024-05", mito: 14.983 },
-  { date: "2024-06", mito: 14.452 },
-  { date: "2024-07", mito: 14.031 },
-  { date: "2024-08", mito: 13.581 },
-  { date: "2024-09", mito: 16.393 },
-  { date: "2024-10", mito: 15.230 },
-  { date: "2024-11", mito: 16.314 },
-  { date: "2024-12", mito: 15.182 },
-  { date: "2025-01", mito: 15.787 },
-  { date: "2025-02", mito: 16.955 },
-  { date: "2025-03", mito: 16.688 },
-  { date: "2025-04", mito: 16.409 },
-  { date: "2025-05", mito: 17.489 },
-  { date: "2025-06", mito: 18.471 },
-  { date: "2025-07", mito: 19.284 },
-  { date: "2025-08", mito: 19.333 },
-  { date: "2025-09", mito: 19.692 },
-  { date: "2025-10", mito: 20.576 },
-  { date: "2025-11", mito: 20.117 },
-  { date: "2025-12", mito: 20.338 },
-  { date: "2026-01", mito: 21.533 },
-  { date: "2026-02", mito: 22.112 },
-  { date: "2026-03", mito: 22.710 },
+  { date: "2014-05", mito: 1.014, sse: 0.995 },
+  { date: "2014-06", mito: 1.095, sse: 1.000 },
+  { date: "2014-07", mito: 1.181, sse: 1.074 },
+  { date: "2014-08", mito: 1.340, sse: 1.082 },
+  { date: "2014-09", mito: 1.515, sse: 1.154 },
+  { date: "2014-10", mito: 1.567, sse: 1.181 },
+  { date: "2014-11", mito: 1.623, sse: 1.309 },
+  { date: "2014-12", mito: 1.672, sse: 1.578 },
+  { date: "2015-01", mito: 1.848, sse: 1.567 },
+  { date: "2015-02", mito: 2.070, sse: 1.615 },
+  { date: "2015-03", mito: 2.644, sse: 1.829 },
+  { date: "2015-04", mito: 2.844, sse: 2.167 },
+  { date: "2015-05", mito: 3.506, sse: 2.250 },
+  { date: "2015-06", mito: 3.268, sse: 2.087 },
+  { date: "2015-07", mito: 3.086, sse: 1.788 },
+  { date: "2015-08", mito: 3.315, sse: 1.565 },
+  { date: "2015-09", mito: 3.323, sse: 1.490 },
+  { date: "2015-10", mito: 3.985, sse: 1.651 },
+  { date: "2015-11", mito: 4.540, sse: 1.681 },
+  { date: "2015-12", mito: 4.480, sse: 1.727 },
+  { date: "2016-01", mito: 4.193, sse: 1.336 },
+  { date: "2016-02", mito: 4.139, sse: 1.312 },
+  { date: "2016-03", mito: 4.920, sse: 1.466 },
+  { date: "2016-04", mito: 5.190, sse: 1.434 },
+  { date: "2016-05", mito: 4.805, sse: 1.423 },
+  { date: "2016-06", mito: 4.623, sse: 1.430 },
+  { date: "2016-07", mito: 4.667, sse: 1.454 },
+  { date: "2016-08", mito: 4.949, sse: 1.506 },
+  { date: "2016-09", mito: 5.169, sse: 1.466 },
+  { date: "2016-10", mito: 5.428, sse: 1.513 },
+  { date: "2016-11", mito: 5.485, sse: 1.586 },
+  { date: "2016-12", mito: 5.511, sse: 1.515 },
+  { date: "2017-01", mito: 5.306, sse: 1.542 },
+  { date: "2017-02", mito: 5.689, sse: 1.582 },
+  { date: "2017-03", mito: 5.531, sse: 1.573 },
+  { date: "2017-04", mito: 5.240, sse: 1.540 },
+  { date: "2017-05", mito: 5.039, sse: 1.521 },
+  { date: "2017-06", mito: 5.428, sse: 1.558 },
+  { date: "2017-07", mito: 5.372, sse: 1.597 },
+  { date: "2017-08", mito: 5.489, sse: 1.640 },
+  { date: "2017-09", mito: 5.484, sse: 1.634 },
+  { date: "2017-10", mito: 5.485, sse: 1.656 },
+  { date: "2017-11", mito: 5.472, sse: 1.619 },
+  { date: "2017-12", mito: 5.905, sse: 1.614 },
+  { date: "2018-01", mito: 5.652, sse: 1.699 },
+  { date: "2018-02", mito: 5.482, sse: 1.591 },
+  { date: "2018-03", mito: 5.787, sse: 1.546 },
+  { date: "2018-04", mito: 5.797, sse: 1.504 },
+  { date: "2018-05", mito: 5.656, sse: 1.511 },
+  { date: "2018-06", mito: 5.416, sse: 1.390 },
+  { date: "2018-07", mito: 5.512, sse: 1.404 },
+  { date: "2018-08", mito: 5.569, sse: 1.330 },
+  { date: "2018-09", mito: 5.682, sse: 1.377 },
+  { date: "2018-10", mito: 5.452, sse: 1.270 },
+  { date: "2018-11", mito: 5.903, sse: 1.263 },
+  { date: "2018-12", mito: 5.654, sse: 1.217 },
+  { date: "2019-01", mito: 5.670, sse: 1.261 },
+  { date: "2019-02", mito: 6.564, sse: 1.435 },
+  { date: "2019-03", mito: 7.410, sse: 1.508 },
+  { date: "2019-04", mito: 6.858, sse: 1.502 },
+  { date: "2019-05", mito: 6.959, sse: 1.415 },
+  { date: "2019-06", mito: 7.562, sse: 1.454 },
+  { date: "2019-07", mito: 7.222, sse: 1.431 },
+  { date: "2019-08", mito: 7.356, sse: 1.409 },
+  { date: "2019-09", mito: 7.318, sse: 1.418 },
+  { date: "2019-10", mito: 7.458, sse: 1.430 },
+  { date: "2019-11", mito: 7.289, sse: 1.402 },
+  { date: "2019-12", mito: 7.637, sse: 1.489 },
+  { date: "2020-01", mito: 6.908, sse: 1.453 },
+  { date: "2020-02", mito: 7.456, sse: 1.406 },
+  { date: "2020-03", mito: 7.052, sse: 1.342 },
+  { date: "2020-04", mito: 7.050, sse: 1.396 },
+  { date: "2020-05", mito: 7.470, sse: 1.392 },
+  { date: "2020-06", mito: 8.208, sse: 1.457 },
+  { date: "2020-07", mito: 9.016, sse: 1.616 },
+  { date: "2020-08", mito: 8.950, sse: 1.657 },
+  { date: "2020-09", mito: 8.565, sse: 1.571 },
+  { date: "2020-10", mito: 8.709, sse: 1.574 },
+  { date: "2020-11", mito: 8.805, sse: 1.656 },
+  { date: "2020-12", mito: 8.967, sse: 1.695 },
+  { date: "2021-01", mito: 9.099, sse: 1.700 },
+  { date: "2021-02", mito: 9.858, sse: 1.713 },
+  { date: "2021-03", mito: 9.464, sse: 1.680 },
+  { date: "2021-04", mito: 9.516, sse: 1.683 },
+  { date: "2021-05", mito: 9.558, sse: 1.765 },
+  { date: "2021-06", mito: 9.642, sse: 1.753 },
+  { date: "2021-07", mito: 10.030, sse: 1.658 },
+  { date: "2021-08", mito: 11.006, sse: 1.730 },
+  { date: "2021-09", mito: 10.838, sse: 1.742 },
+  { date: "2021-10", mito: 10.814, sse: 1.731 },
+  { date: "2021-11", mito: 11.898, sse: 1.740 },
+  { date: "2021-12", mito: 12.138, sse: 1.777 },
+  { date: "2022-01", mito: 11.821, sse: 1.641 },
+  { date: "2022-02", mito: 11.648, sse: 1.690 },
+  { date: "2022-03", mito: 11.413, sse: 1.587 },
+  { date: "2022-04", mito: 10.785, sse: 1.487 },
+  { date: "2022-05", mito: 12.388, sse: 1.555 },
+  { date: "2022-06", mito: 12.935, sse: 1.659 },
+  { date: "2022-07", mito: 13.500, sse: 1.588 },
+  { date: "2022-08", mito: 13.542, sse: 1.563 },
+  { date: "2022-09", mito: 12.769, sse: 1.476 },
+  { date: "2022-10", mito: 14.278, sse: 1.412 },
+  { date: "2022-11", mito: 15.109, sse: 1.538 },
+  { date: "2022-12", mito: 14.813, sse: 1.508 },
+  { date: "2023-01", mito: 14.993, sse: 1.589 },
+  { date: "2023-02", mito: 15.807, sse: 1.601 },
+  { date: "2023-03", mito: 15.479, sse: 1.597 },
+  { date: "2023-04", mito: 16.337, sse: 1.622 },
+  { date: "2023-05", mito: 16.177, sse: 1.564 },
+  { date: "2023-06", mito: 16.402, sse: 1.563 },
+  { date: "2023-07", mito: 16.056, sse: 1.606 },
+  { date: "2023-08", mito: 15.509, sse: 1.523 },
+  { date: "2023-09", mito: 15.244, sse: 1.518 },
+  { date: "2023-10", mito: 15.051, sse: 1.473 },
+  { date: "2023-11", mito: 15.719, sse: 1.479 },
+  { date: "2023-12", mito: 15.813, sse: 1.452 },
+  { date: "2024-01", mito: 13.797, sse: 1.361 },
+  { date: "2024-02", mito: 13.932, sse: 1.472 },
+  { date: "2024-03", mito: 16.151, sse: 1.484 },
+  { date: "2024-04", mito: 16.289, sse: 1.515 },
+  { date: "2024-05", mito: 14.983, sse: 1.506 },
+  { date: "2024-06", mito: 14.452, sse: 1.448 },
+  { date: "2024-07", mito: 14.031, sse: 1.434 },
+  { date: "2024-08", mito: 13.581, sse: 1.387 },
+  { date: "2024-09", mito: 16.393, sse: 1.628 },
+  { date: "2024-10", mito: 15.230, sse: 1.600 },
+  { date: "2024-11", mito: 16.314, sse: 1.623 },
+  { date: "2024-12", mito: 15.182, sse: 1.635 },
+  { date: "2025-01", mito: 15.787, sse: 1.586 },
+  { date: "2025-02", mito: 16.955, sse: 1.620 },
+  { date: "2025-03", mito: 16.688, sse: 1.628 },
+  { date: "2025-04", mito: 16.409, sse: 1.600 },
+  { date: "2025-05", mito: 17.489, sse: 1.633 },
+  { date: "2025-06", mito: 18.471, sse: 1.681 },
+  { date: "2025-07", mito: 19.284, sse: 1.744 },
+  { date: "2025-08", mito: 19.333, sse: 1.883 },
+  { date: "2025-09", mito: 19.692, sse: 1.895 },
+  { date: "2025-10", mito: 20.576, sse: 1.930 },
+  { date: "2025-11", mito: 20.117, sse: 1.897 },
+  { date: "2025-12", mito: 20.338, sse: 1.937 },
+  { date: "2026-01", mito: 21.533, sse: 2.009 },
+  { date: "2026-02", mito: 22.112, sse: 2.031 },
+  { date: "2026-03", mito: 22.710, sse: 1.899 },
 ];
 
 // 年度收益数据 (基于报告)
@@ -170,8 +172,8 @@ const annualData = [
   { year: "2022", mito: 22.33, csi300: -21.6 },
   { year: "2023", mito: 7.07, csi300: -11.4 },
   { year: "2024", mito: 1.12, csi300: 14.7 },
-  { year: "2025", mito: 30.20, csi300: 10.5 }, // 报告数据
-  { year: "2026", mito: 45.08, csi300: 5.2 }, // 报告数据
+  { year: "2025", mito: 30.20, csi300: 10.5 },
+  { year: "2026", mito: 45.08, csi300: 5.2 },
 ];
 
 const metricCards = [
@@ -191,6 +193,7 @@ const GRID_COLOR = "#2d3a5a";
 const TICK_COLOR = "#6b7a99";
 const TOOLTIP_BG = "#141e35";
 const TOOLTIP_BORDER = "#2d3a5a";
+const SSE_COLOR = "#7b9ccc";
 
 function MetricCard({ label, value, unit, decimals, highlight, delay, triggered }: {
   label: string; value: number; unit: string; decimals: number; highlight: boolean;
@@ -238,7 +241,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         <div style={{ color: "#6b7a99", marginBottom: "0.3rem" }}>{label}</div>
         {payload.map((p: any) => (
           <div key={p.name} style={{ color: p.color }}>
-            {p.name === "mito" ? "Mito" : "沪深300"}: {p.value.toFixed(2)}x
+            {p.name === "mito" ? "Mito" : "上证指数"}: {p.value.toFixed(2)}x
           </div>
         ))}
       </div>
@@ -335,6 +338,10 @@ export default function PerformanceSection() {
                   <div className="w-4 h-0.5 rounded" style={{ background: GOLD }} />
                   <span style={{ color: GOLD }}>Mito</span>
                 </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-4 h-0.5 rounded" style={{ background: SSE_COLOR }} />
+                  <span style={{ color: SSE_COLOR }}>上证指数</span>
+                </div>
               </div>
             </div>
             <ResponsiveContainer width="100%" height={260}>
@@ -360,6 +367,16 @@ export default function PerformanceSection() {
                   stroke={GOLD}
                   strokeWidth={2}
                   dot={false}
+                  isAnimationActive={visible}
+                  animationDuration={2000}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="sse"
+                  stroke={SSE_COLOR}
+                  strokeWidth={1.5}
+                  dot={false}
+                  strokeDasharray="4 2"
                   isAnimationActive={visible}
                   animationDuration={2000}
                 />
@@ -411,7 +428,7 @@ export default function PerformanceSection() {
         {/* 免责声明 */}
         <p className={`mt-6 text-xs font-mono-data transition-all duration-700 ${visible ? "opacity-100" : "opacity-0"}`}
           style={{ color: "#3d4d6a", transitionDelay: "500ms" }}>
-          * 以上数据为历史回测结果，已扣除万三双边佣金及印花税。历史表现不代表未来收益，投资有风险。
+          * 以上数据为历史回测结果，已扣除万三双边佣金及印花税。上证指数数据来源：Wind。历史表现不代表未来收益，投资有风险。
         </p>
       </div>
     </section>
