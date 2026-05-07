@@ -11,7 +11,7 @@ const stats = [
   { label: "年化收益", value: 33.20, unit: "%", decimals: 2 },
   { label: "夏普比率", value: 1.43, unit: "", decimals: 2 },
   { label: "最大回撤", value: 17.20, unit: "%", decimals: 2 },
-  { label: "累计收益", value: 2171, unit: "%", decimals: 0, }, // 22.71x -> 2171% 累计收益
+  { label: "累计收益", value: 2271, unit: "%", decimals: 0, }, 
 ];
 
 function StatCard({ label, value, unit, decimals, delay }: {
