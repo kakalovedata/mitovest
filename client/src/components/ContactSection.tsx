@@ -155,11 +155,11 @@ export default function ContactSection() {
               role="button"
               tabIndex={0}
               className="data-card-dark p-6 cursor-pointer"
-              onClick={() => handleCopy("cell2015@126.com", "email")}
+              onClick={() => handleCopy("contact@mitovest.com", "email")}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  handleCopy("cell2015@126.com", "email");
+                  handleCopy("contact@mitovest.com", "email");
                 }
               }}
             >
@@ -204,7 +204,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <div className="font-mono-data text-base" style={{ color: "oklch(0.95 0.005 255)" }}>
-                cell2015@126.com
+                contact@mitovest.com
               </div>
               <div
                 className="mt-2 text-xs font-mono-data"
@@ -223,7 +223,7 @@ export default function ContactSection() {
             style={{ transitionDelay: "300ms" }}
           >
             <a
-              href="mailto:cell2015@126.com"
+              href="mailto:contact@mitovest.com"
               className="inline-block py-3.5 px-10 text-sm font-500 rounded-sm transition-all duration-200 hover:brightness-110"
               style={{
                 fontFamily: "'Noto Sans SC', sans-serif",
